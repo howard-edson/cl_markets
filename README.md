@@ -12,15 +12,15 @@ There are three dependencies - requests, beautifulsoup and googlemaps - which ca
 pip install -U -r requirements.txt 
 ```
 
-To use the googlemaps API you'll need to create a free account and copy your key into a file secrets.py, along with the name of your sqlite database file, as follows:
+To use the [googlemaps API](https://developers.google.com/maps/documentation/geocoding/start) you'll need to create a free account and copy your key into a file secrets.py, along with the name of your sqlite database file, as follows:
 
 ```
+######################
 # module: secrets.py
-# google maps API key
-KEY = 'your_key_here'
+######################
 
-# database file
-DB_FILE = 'name_of_your_database_file'
+KEY = 'your_key_here'   # google maps API key
+DB_FILE = 'db_filename' # database file 
 ```
 
 ## Instructions
@@ -39,3 +39,7 @@ $ python run.py "anacortes, wa"
 bellingham.craigslist.org is 17 miles from anacortes, wa
 $
 ```
+
+Locations are saved in a locations table so the distance can be calculated in the future without querying the google maps API again.
+
+The google maps api can be used to calculate distance, but because the number of service calls per day is limited with a free account, the program calculates distances between two lat/lng pairs locally, using the [Haversine formula](https://en.wikipedia.org/wiki/Haversine_formula).
